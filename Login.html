@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <script src="jquery-3.1.0.min.js"></script>
+    <link rel="stylesheet" href="iconfont.css">
+    <script>
+        /*rem 自适应*/
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                    recalc = function () {
+                        var clientWidth = docEl.clientWidth;
+                        if (!clientWidth) return;
+                        docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+                    };
+
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);
+    </script>
+    <style>
+        @keyframes up {
+            0% {
+                top: 0;
+            }
+            50%{
+                top:-.7rem;
+                opacity: 0.5;
+            }
+            100% {
+                top: -.4rem;
+                opacity: 0;
+            }
+        }
+        html,
+        body,
+        header,
+        div,
+        footer,
+        label,
+        input,
+        img,
+        p,
+        button {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-size: .16rem;
+            background: grey;
+            -webkit-font-smoothing: antialiased;
+            font-family: "Microsoft YaHei UI";
+        }
+        header {
+            margin-top: 1.5rem;
+        }
+        header p {
+            margin-top: .1rem;
+            font-size: .4rem;
+            color: #EFFAF6;
+            opacity: .7;
+            text-align: center;
+        }
+        header img {
+            margin-left: 2.5rem;
+            height: 2.5rem;
+            width: 2.5rem;
+            border-radius: 1.25rem;
+        }
+        #content {
+            padding: .1rem;
+        }
+        .item {
+            position: relative;
+            margin-top:.6rem;
+        }
+        .item input {
+            display: block;
+            padding-bottom: .15rem;
+            margin-left: .7rem;
+            width: 6rem;
+            border: 0;
+            border-bottom: .01rem solid #ccc;
+            outline: 0;
+            color: #fff;
+            text-indent: 1rem;
+            font-size: .4rem;
+            background: grey;
+        }
+        .item label {
+            position: relative;
+            top: .4rem;
+            left: 1.6rem;
+            font-size: .4rem;
+            color: #EFFAF6;
+        }
+        .icon-denglu-copy,.icon-login {
+            position: absolute;
+            left: .8rem;
+            bottom: .15rem;
+            font-size: .6rem;
+            color: hsla(0,0%,100%,.6);
+        }
+        .login {
+            position: fixed;
+            bottom: 2rem;
+            left: 1.3rem;
+            height: 1rem;
+            line-height: 1rem;
+            width: 5rem;
+            border: 0;
+            outline: 0;
+            color: #EFFAF6;
+            font-size: .4rem;
+            text-align: center;
+            background: #66CCFF;
+        }
+        footer {
+            position: fixed;
+            bottom: .1rem;
+        }
+        footer p {
+            font-size: .4rem;
+            text-indent: 1.3rem;
+            color: #EFFAF6;
+        }
+    </style>
+    <script>
+        $(function () {
+            //label样式
+            $(".item input").focus(function () {
+                var $label=$(this).parent().find("label");
+                if($(this).val()==''){
+                    $label.animate({top:"-.4rem",left:".8rem",fontSize:".7rem"});
+                }
+            }).blur(function () {
+                var $label=$(this).parent().find("label");
+                if($(this).val()==''){
+                    $label.animate({top:".4rem",left:"1.6rem",fontSize:".4rem"});
+                }
+            });
+//            提交
+            $(".login").click(function () {
+                $.ajax({
+                    url:"",
+                    type:"POST",
+                    data:{
+                        "userName":$("#userName").val(),
+                        "passWord":$("#passWord").val()
+                    },
+                    dataType:"json",
+                    success:function (data) {
+                      alert(data);
+                    }
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+    <header>
+        <img src="test.jpg" alt="logo">
+        <p>Touch your hands</p>
+    </header>
+    <div id="content">
+        <div class="item">
+            <label for="userName">Username</label>
+            <span class="icon-denglu-copy"></span>
+            <input type="text" id="userName">
+        </div>
+        <div class="item">
+            <label for="passWord">Password</label>
+            <span class="icon-login"></span>
+            <input type="text" id="passWord">
+        </div>
+        <button class="login">Log In</button>
+    </div>
+    <footer>
+        <p>copyRight &copy; By HduHelp</p>
+    </footer>
+</body>
+</html>
