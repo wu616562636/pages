@@ -111,6 +111,7 @@
             /*bottom: 0.1rem;*/
             /*left: 1.3rem;*/
             margin-top: 1rem;
+            margin-bottom: .5rem;
             margin-left: 1.15rem;
             height: 1rem;
             line-height: 1rem;
@@ -137,11 +138,17 @@
             //label样式
             $(".item input").focus(function () {
                 var $label=$(this).parent().find("label");
+                window.borderColor=$label.next().css("border-color");
+                window.color=$label.css("color");
+                $label.parent().find("span").css("color","#66CCFF")
+                        .next().css("border-color","#66CCFF");
                 if($(this).val()==''){
                     $label.animate({top:"-.4rem",left:".8rem",fontSize:".7rem"});
                 }
             }).blur(function () {
                 var $label=$(this).parent().find("label");
+                $label.parent().find("span").css("color",borderColor)
+                        .next().css("border-color",color);
                 if($(this).val()==''){
                     $label.animate({top:".4rem",left:"1.6rem",fontSize:".4rem"});
                 }
