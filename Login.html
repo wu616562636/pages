@@ -85,7 +85,7 @@
             margin-left: .7rem;
             width: 6rem;
             border: 0;
-            border-bottom: 1rem solid #ccc;
+            border-bottom: .2rem solid #ccc;
             outline: 0;
             color: #fff;
             text-indent: 1rem;
@@ -124,9 +124,8 @@
             background: #66CCFF;
         }
         footer {
-            /*position: fixed;*/
-            /*bottom: .1rem;*/
-            margin-top: 1.7rem;
+            position: fixed;
+            bottom: .1rem;
         }
         footer p {
             font-size: .4rem;
@@ -140,7 +139,7 @@
             $(".item input").focus(function () {
                 var $label=$(this).parent().find("label");
                 window.borderColor=$label.next().css("border-color");
-                window.color=$label.css("color");
+                window.color=$label.parent().find("span").css("color");
                 $label.parent().find("span").css("color","#66CCFF")
                         .next().css("border-color","#66CCFF");
                 if($(this).val()==''){
@@ -148,8 +147,8 @@
                 }
             }).blur(function () {
                 var $label=$(this).parent().find("label");
-                $label.parent().find("span").css("color",borderColor)
-                        .next().css("border-color",color);
+                $label.parent().find("span").css("color",color)
+                        .next().css("border-color",borderColor);
                 if($(this).val()==''){
                     $label.animate({top:".4rem",left:"1.6rem",fontSize:".4rem"});
                 }
